@@ -1,0 +1,39 @@
+	
+		/*輪播圖的箭頭*/
+.jssora22l, .jssora22r {
+            display: block;
+            position: absolute;
+            /* size of arrow element */
+            width: 58px;
+            height: 58px;
+            cursor: pointer;
+            background: url('../images/a22.png') center center no-repeat;
+            overflow: hidden;
+        }
+.jssora22l { background-position: 0px -32px; }
+.jssora22r { background-position: -58px -32px; }
+.jssora22l:hover { background-position: -116px -32px; }
+.jssora22r:hover { background-position: -174px -32px; }
+.jssora22l.jssora22ldn { background-position: -232px -32px; }
+.jssora22r.jssora22rdn { background-position: -290px -32px; }
+.jssora22l.jssora22lds { background-position: 0px -32px; opacity: .3; pointer-events: none; }
+.jssora22r.jssora22rds { background-position: -58px -32px; opacity: .3; pointer-events: none; }
+
+/*輪播圖的點點*/
+.jssorb05 {
+            position: absolute;
+        }
+        .jssorb05 div, .jssorb05 div:hover, .jssorb05 .av {
+            position: absolute;
+            /* size of bullet elment */
+            width: 16px;
+            height: 16px;
+            background: url('../images/b05.png') no-repeat;
+            overflow: hidden;
+            cursor: pointer; z-index:99;
+        }
+        .jssorb05 div { background-position: -7px -7px; }
+        .jssorb05 div:hover, .jssorb05 .av:hover { background-position: -37px -7px; }
+        .jssorb05 .av { background-position: -67px -7px; }
+        .jssorb05 .dn, .jssorb05 .dn:hover { background-position: -97px -7px; }
+		

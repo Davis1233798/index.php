@@ -1,0 +1,236 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+.ach_block{
+	width:100%;
+	/*margin:0 auto;
+	padding:50px 0 0 0;*/
+}
+.block_list{position:relative;}
+.list_title{ cursor:pointer;position:relative;}
+.block_detail{
+	width:550px;
+	padding:20px;
+	box-sizing:border-box;
+}
+
+.block{width:100%; height:200px;overflow:hidden;}
+.block li{ font-size:15px; line-height:25px; color:#444;}
+.block li:nth-child(odd){ width:15%; float:left;}
+.block li:nth-child(even){ width:85%; float:left;}
+.doctor{font-size:20px; line-height:28px;color:#444; padding:10px 0; box-sizing:border-box;}
+.doctor span{display:block; font-size:15px; color:#5eb255;}
+
+.block-en{width:100%; height:200px;overflow:hidden;}
+.block-en li{font-size:15px; line-height:25px; color:#444;}
+.block-en li:nth-child(odd){ font-weight:bold;}
+.block-en li:nth-child(even){ margin-bottom:20px;}
+
+.closeclose{
+	position:absolute;
+	right:10px;
+	top:10px;
+	cursor:pointer;
+}
+@media (max-width:640px){
+.block_detail{
+	width:100%;
+}
+.block li:nth-child(odd){ width:100%; float:none;}
+.block li:nth-child(even){ width:100%; float:none;}
+
+}
+
+
+
+.ach_map_detail_title{
+	font-size:28px;
+	font-weight:bold;
+	color:#595656;
+	background:url(../images/ach-map-icon04.jpg) no-repeat left 8px;
+	padding:20px 0 18px 20px;
+	border-bottom:1px solid #dcdcdc;
+	margin:20px 0 15px 0;
+	float:left;
+	width:420px;
+}
+.ach_map_detail_title span{
+	display:block;
+	font-size:14px;
+	color:#b8b8b8;
+}
+.ach_map_detail_pic{
+	float:left;
+	padding:0 30px 0 0;
+}
+.ach_map_detail_info{
+	float:left;
+	width:430px; 
+	height:120px;
+}
+
+.rwd_close{
+	position:absolute;
+	width:40px;
+	height:40px;
+	right:30px;
+	top:40px;
+	cursor:pointer;
+	z-index:5;
+}
+.rwd_close::after, .rwd_close::before{
+	content:'';
+	display:block;
+	width:45px;
+	height:4px;
+	background:#fff;
+}
+.rwd_close::after{
+	margin:-3px 0 0 0;
+	transform:rotate(45deg);
+	-webkit-transform:rotate(45deg);
+}
+.rwd_close::before{
+	transform:rotate(-45deg);
+	-webkit-transform:rotate(-45deg);
+}
+.cover{
+	display:none;
+	position:fixed;
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.8);
+	z-index:4;
+}
+.rwd_ach_search_btn{
+	display:none;
+	cursor:pointer;
+	width:64px;
+	margin:0 0 0 auto;
+	font-size:16px;
+	font-weight:bold;
+	color:#595656;
+	padding:20px 0 0 0;
+}
+.rwd_ach_search_btn img{
+	margin:0 auto;
+	display:block;
+}
+.rwd_ach_search{
+	display:none;
+	position:fixed;
+	width:100%;
+	top:25%;
+	right:0;
+	z-index:4;
+	background:#fff;
+}
+.rwd_ach_search select, .rwd_ach_search input{
+	font-family:Arial, "微軟正黑體 Light";
+	font-size:18px;
+	width:100%;
+	border:0;
+	border-bottom:1px solid #c9c9c9;
+	padding:20px 0 20px 40px;
+	box-sizing:border-box;
+}
+.rwd_ach_search input[type="button"]{
+	text-align:center;
+	padding:0;
+	border:0;
+	margin:20px 0;
+}
+.rwd_ach_search_title{
+	background:#777777;
+	padding:30px 0 30px 20px;
+	font-size:20px;
+	color:#fff;
+}
+.rwd_ach_search_close{
+	position:absolute;
+	right:20px;
+	top:40px;
+	cursor:pointer;
+}
+.rwd_ach_search_close::after, .rwd_ach_search_close::before{
+	content:'';
+	display:block;
+	width:45px;
+	height:4px;
+	background:#fff;
+}
+.rwd_ach_search_close::after{
+	margin:-3px 0 0 0;
+	transform:rotate(45deg);
+	-webkit-transform:rotate(45deg);
+}
+.rwd_ach_search_close::before{
+	transform:rotate(-45deg);
+	-webkit-transform:rotate(-45deg);
+}
+.rwd_ach_map_list_btn{
+	position:absolute;
+	right:10px;
+	top:10px;
+	width:45px;
+	font-size:16px;
+	font-weight:bold;
+	color:#595656;
+	text-align:center;
+	cursor:pointer;
+	display:none;
+	z-index:2;
+}
+.rwd_page{
+	display:none;
+	width:80%;
+	margin:0 10%;
+	padding:10px 2%;
+	box-sizing:border-box;
+	font-family:Arial, "微軟正黑體 Light";
+	font-size:16px;
+	color:#595656;
+}
+.rwd_scroll{
+	display:none;
+	position:absolute;
+	bottom:5%;
+	left:50%;
+	margin:0 0 0 -36px;
+}
+.vision_chairman{
+	display:none;
+	position:absolute;
+	right:0;
+	bottom:-20px;
+	width:50%;
+	text-align:right;
+}
+@media (max-width:1024px) {
+.ach_map_detail{
+	display:none;
+	position:absolute;
+	width:90%;
+	height:298px;
+	background:#fff;
+	left:50%;
+	top:50%;
+	margin:-149px 0 0 -45%;
+	padding:20px;
+}
+.ach_map_detail_title{
+	font-size:24px;
+	background:url(../images/ach-map-icon04.jpg) no-repeat left 8px;
+	padding:20px 0 18px 20px;
+	float:none;
+	width:95%;
+}
+.ach_map_detail_pic{ display:none;}
+.ach_map_detail_info{
+	float:none;
+	width:97%; 
+	height:130px;
+}
+
+}
+
