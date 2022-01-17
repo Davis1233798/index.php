@@ -93,16 +93,13 @@
         for ($j = 0; $j < (count($unicodeA) - 1); $j++) {
             $unicode = $unicodeA[$j];			
             $statcode = $statA[$j];//取出郵件狀態碼					
-            $stat = MailStat($statcode);//配對郵件狀態
-		
+            $stat = MailStat($statcode);//配對郵件狀態		
             $update = "update barcode_time set statuscode = '$statcode' ,mailstatus='$stat'  WHERE unicode = '$unicode'";
             $stmt1 = sqlsrv_query($conn, $update);
             if ($stmt1) {
-                sqlsrv_commit($conn);
-				
+                sqlsrv_commit($conn);				
             } else {
-                sqlsrv_rollback($conn);
-				
+                sqlsrv_rollback($conn);				
             }
         }
     }
