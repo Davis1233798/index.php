@@ -293,6 +293,7 @@
 	$DATIMEA    = array();
 	$EvcodeA    = array();
 	$num2A      = array();
+	$original   = array();
     $targetDate = date("Y/m/d",strtotime('-180 day'));//取得6個月前日期
 	var_dump($targetDate);
 	$targetDate = TaiwanYear($targetDate);
