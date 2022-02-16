@@ -71,6 +71,7 @@ include_once($_env["site_admin_path"]."layout/header.php");
 				<div class="col-md-4">
 					<div class="form-group row">
 						<button type="submit" class="btn btn-sm btn-secondary"><i class="fa fa-search"></i> 查詢</button>
+						<!-- <button type="button" class="btn btn-sm btn-success" onclick="location.href='add.php'"><i class="fa fa-plus"></i> 新增</button> -->
 					</div>
 				</div>
 			</form>
