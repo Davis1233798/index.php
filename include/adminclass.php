@@ -180,9 +180,10 @@
 			FROM sys_auth fn 
 			LEFT JOIN sys_auth c ON fn.id = c.p_id AND c.inuse = 1
 			WHERE fn.p_id = 0 AND fn.inuse = 1 ';
+
 		if($get_all===false){
 			$sql .= 'AND (
-				fn.id IN ('.implode(',', $_SESSION[$_env['site_code'].'_manager_auth']).') 
+				fn.id IN ('.implode(',', $_SESSION[$_env['site_code'].'_manager_auth']).')
 				OR c.id IN ('.implode(',', $_SESSION[$_env['site_code'].'_manager_auth']).')
 			) ';
 		}
