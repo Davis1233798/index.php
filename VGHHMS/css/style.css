@@ -1,0 +1,132 @@
+/* Flexible Slide-to-top Accordion Style*/
+
+.st-accordion{
+    width:100%;
+    /*min-width:270px;*/
+    margin: 0;
+}
+.st-accordion ul li{
+    height:80px;
+    border-top:1px solid #fff;
+    overflow: hidden;
+	background:url(../images/q-icon.png) no-repeat left top;
+	
+}
+.st-accordion ul li:first-child{
+    /*border-top:none;*/
+}
+.st-accordion ul li > a{
+    font-size:22px;
+    display: block;
+	position: relative;
+    line-height:80px;
+	outline:none;
+	color:#555;
+	font-weight:bold;
+    -webkit-transition:  color 0.2s ease-in-out;
+	-moz-transition:  color 0.2s ease-in-out;
+	-o-transition:  color 0.2s ease-in-out;
+	-ms-transition:  color 0.2s ease-in-out;
+	transition:  color 0.2s ease-in-out;
+	padding:0 0 8px 100px;
+	box-sizing:border-box;
+	
+}
+.st-accordion ul li > a span{
+	width: 120px;
+	height: 40px;
+	line-height:40px;
+	text-align:center;
+	font-size:18px;
+	position: absolute;
+	top: 20%;
+	right:0;
+	opacity:1;
+	-webkit-transition:  all 0.2s ease-in-out;
+	-moz-transition:  all 0.2s ease-in-out;
+	-o-transition:  all 0.2s ease-in-out;
+	-ms-transition:  all 0.2s ease-in-out;
+	transition:  all 0.2s ease-in-out;
+	box-sizing:border-box;
+	background:#eee;
+}
+.st-accordion ul li > a:hover{
+    color: #000;
+}
+.st-accordion ul li > a:hover span{
+	opacity:1;
+	right:0;
+}
+.st-accordion ul li.st-open > a{
+    color: #333;
+}
+.st-accordion ul li.st-open > a span{
+	right:0;
+	opacity:1;
+}
+.st-content{
+    padding:20px 20px 20px 100px;
+	box-sizing:border-box;
+	border-top: 1px dashed #ccc;
+	background:url(../images/q-icon-02.png) no-repeat left 20px;
+	min-height:120px;
+}
+.st-content p{
+	font-size:18px;
+	line-height:30px;
+}
+
+
+@media screen and (max-width: 1024px){
+.st-accordion ul li{
+    height:70px;
+	background-size:60px;
+}
+.st-accordion ul li > a{
+    font-size:20px;
+    line-height:70px;
+	padding:0 0 0 70px;
+	
+}
+.st-accordion ul li > a span{
+	width: 100px;
+	height: 40px;
+	line-height:40px;
+	text-align:center;
+	font-size:15px;
+	top: 20%;
+	right:0;
+}
+.st-content{
+    padding:20px 20px 20px 70px;
+	background-size:60px;
+}
+
+.st-content p{ 
+   font-size:16px;
+}
+
+
+}
+
+@media screen and (max-width: 640px){
+.st-accordion ul li{
+	padding:15px 0 0 0;
+	box-sizing:border-box;
+	/*
+	overflow : hidden;
+    text-overflow : ellipsis;
+    white-space : nowrap;
+	*/
+}
+.st-accordion ul li > a{
+    font-size:18px;
+    line-height:28px;
+	height:70px;
+	padding:0 0 0 70px;
+}
+.st-accordion ul li > a span{
+	display:none;
+}
+
+}

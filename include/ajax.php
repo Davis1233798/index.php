@@ -4,6 +4,7 @@ include_once(__DIR__."/baseclass.php");
 try{
 
 $fn = get_post("fn");
+
 switch($fn){
 	default:
 		throw new exception("功能不存在");
@@ -77,7 +78,9 @@ switch($fn){
 		$tel_office = get_post('tel_office', '');
 		$mobile = get_post('mobile', '');
 		$fax = get_post('fax', '');
-		$mail = get_post('mail', '');
+        $mail = get_post('mail', '');
+        $meal = get_post('meal', '');
+        $quota = get_post('quota', '');
 
 		if($name=='') throw new exception('請輸入姓名');
 		if($identity=='') throw new exception('請輸入身分證/護照');
@@ -91,6 +94,7 @@ switch($fn){
 		if($mobile=='') throw new exception('請輸入行動電話');
 		if($mail=='') throw new exception('請輸入電子郵件');
 		if(chk_is_mail($mail)===false) throw new exception('電子郵件格式錯誤');
+        if($meal=='00' && $quota !='') throw new exception('代餐尚未選擇,請勿填寫數量');
 		
 		$_SESSION[$_env['site_code'].'_recommand']['id_type'] = $id_type;
 		$_SESSION[$_env['site_code'].'_recommand']['id_type_name'] = $id_type_name;
@@ -107,15 +111,26 @@ switch($fn){
 		$_SESSION[$_env['site_code'].'_recommand']['mobile'] = $mobile;
 		$_SESSION[$_env['site_code'].'_recommand']['fax'] = $fax;
 		$_SESSION[$_env['site_code'].'_recommand']['mail'] = $mail;
-		
+        $_SESSION[$_env['site_code'].'_recommand']['meal'] = $meal;
+        $_SESSION[$_env['site_code'].'_recommand']['quota'] = $quota;
+
 		$result = array(
 			'ok'=>'t',
 		);
+//        if([$_env['site_code'].'_recommand']['$mail']) throw new exception(echo $mail);
 		break;
 	case "recommand_5":
-		if(!$_SESSION[$_env['site_code'].'_recommand']) throw new exception('SESSION');
+		if(![$_env['site_code'].'_recommand']) throw new exception('SESSION');
 		$memo = get_post('memo', '');
+        $meal =  get_post('meal', 'NA');
+        $quota = get_post('quota', 'NA');
+
+
+//        if([$_env['site_code'].'_recommand']['$meal']) throw new exception(echo $meal);
 		$_SESSION[$_env['site_code'].'_recommand']['memo'] = $memo;
+        $_SESSION[$_env['site_code'].'_recommand']['meal'] = $meal;
+        $_SESSION[$_env['site_code'].'_recommand']['quota'] = $quota;
+
 		$data = $_SESSION[$_env['site_code'].'_recommand'];
 
 		// 寫入預約紀錄
@@ -138,9 +153,11 @@ switch($fn){
 			'price' => $data['price'],
 			'memo' => $data['memo'],
 			'created' => Date('Y-m-d H:i:s'),
+            'meal' => $data['meal'],
+            'quota' => $data['quota'],
 		);
 		$last_id = $db->doinsert('reservation', $para);
-		
+
 		/*========寫入預約項目========*/
 		// 寫入預約健檢套組
 		$arr_package_1 = array();
@@ -281,6 +298,8 @@ switch($fn){
 			'reportaddr'=>$data['add_report'],
 			'tel2'=>$data['tel_office'],
 			'fax'=>$data['fax'],
+            'meal' => $data['meal'],
+            'quota' => $data['quota'],
 			'status'=>'1',
 			'email'=>$data['mail'],
 			'Cost'=>$data['price'],

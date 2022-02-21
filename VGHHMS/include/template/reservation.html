@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+</head>
+
+<body style="background: #f7f7f7;">
+
+<table style="width: 90%; font-size:18px; line-height:30px; color:#5eb255; font-weight:bold;">
+  <tr>
+    <td colspan="2" style="color:#000;">
+        親愛的{@name} {@gender_name}，您好<br />
+        非常感謝您預約本中心健康檢查，線上預約服務選擇之基本組套與預約日期僅供參考，將由專人於2個工作天內與您聯繫確認完成預約。<br />
+        您的預約資料如下：
+    </td>
+  </tr>
+  <tr>
+    <td style="border-bottom: 1px solid #ccc;">健檢對象：{@id_type} {@id_type_name}</td>
+    <td style="border-bottom: 1px solid #ccc;">聯絡電話(O)：{@tel_home}</td>
+  </tr>
+  <tr>
+    <td style="border-bottom: 1px solid #ccc;">姓名：{@name}</td>
+    <td style="border-bottom: 1px solid #ccc;">聯絡電話(H)：{@tel_office}</td>
+  </tr>
+  <tr>
+      <td style="border-bottom: 1px solid #ccc;">性別：{@gender}</td>
+      <td style="border-bottom: 1px solid #ccc;">傳真：{@fax}</td>
+  </tr>
+  <tr>
+      <td style="border-bottom: 1px solid #ccc;">身分證/護照：{@identity}</td>
+      <td style="border-bottom: 1px solid #ccc;">E-mail：{@mail}</td>
+  </tr>
+  <tr>
+      <td style="border-bottom: 1px solid #ccc;">生日：{@birthday}</td>
+      <td style="border-bottom: 1px solid #ccc;">寄藥地址：{@add_drug}</td>
+  </tr>
+  <tr>
+      <td style="border-bottom: 1px solid #ccc;">希望預約日期：{@resv_date_s} 到 {@resv_date_e}</td>
+      <td style="border-bottom: 1px solid #ccc;">寄報告地址：{@add_report}</td>
+  </tr>
+</table>
+<table style="width: 90%; padding: 20px; margin-top: 50px; background:#fff; border:1px solid #ccc; font-size:20px; line-height:30px; color:#575757; font-weight:bold;">
+  <tr>
+    <td>
+        您已選取的套餐<br>
+        {@package_1_name}：{@package_1}<br>
+        {@package_2_name}：{@package_2}<br>
+        加項項目：{@self_pay_item}
+    </td>
+  </tr>
+</table>
+<table style="width:90%; margin:30px 0; font-size:20px; color:#F00;">
+  <tr>
+    <td>
+        合計費用 <span>NT$ {@price}</span>
+    </td>
+  </tr>
+</table>
+<table style="width: 90%; padding: 20px; margin-top: 50px; background:#fff; border:1px solid #ccc; font-size:20px; line-height:30px; color:#575757; font-weight:bold;">
+  <tr>
+    <td>
+        備註：{@memo}
+    </td>
+  </tr>
+</table>
+<table style="width:90%; margin:30px 0; font-size:20px; color:#F00;">
+  <tr>
+    <td>
+      ＊此為系統自動產生與發送之信件，請勿直接回覆，感謝您的配合。謝謝！<br>
+      ＊若有任何問題，請於上班時間來電 02-28757225 或善用網路“聯絡我們”將有專人回覆
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

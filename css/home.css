@@ -389,6 +389,7 @@ padding:15px; box-sizing:border-box; margin:0 0 42px 0;
 .reserveform li input[type="text"]{ width:100%; padding:10px; border:1px solid #ffbbbb; box-sizing:border-box; font-size:16px; line-height:30px; }
 .reserveform li:nth-child(1) input[type="text"]{ border:1px solid #ccc; width:200px;}
 .reserveform li:nth-child(16) input[type="text"]{ border:1px solid #ccc;}
+.reserveform li:nth-child(17){ margin:0 0 1% 0;}
 .formbtn{ background:#ccc; text-align:center;}
 .formbtn a{ display:block; color:#000;}
 .checkform{ width:100%; overflow:hidden; margin:50px 0 0 0;display:flex;justify-content:space-between;flex-wrap:wrap;}
