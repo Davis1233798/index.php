@@ -134,21 +134,27 @@
                     <? }
                     unset($sql);
                     unset($data_class);
+
                     ?>
                 </select>
 
                 <input type="text" placeholder="數量" id="quota" value="<? echo $_SESSION[$_env['site_code'].'_recommand']["quota"]==''?'':$_SESSION[$_env['site_code'].'_recommand']["quota"]?>" maxlength="2" style = "max-width: 100px; height: 50px;">
 
             </li>
-
+            <?
+            $sql2 = "SELECT remark FROM meal WHERE id = "?>
+            <script>
+                alert($('#meal').val());
+                $(function(){
+                    $('#meal').val()
+            }
+            </script>
+            <?"enable = 1 ORDER BY id";
+            $data_class2 = $db->doselect($sql2);
+            echo '<span>'.$data_class2['remark'].'</span>';
+            ?>
         </ul>
-
-
-
-        </ul>
-
-
-
+    </ul>
 
     </div>
     <div class="btn">
