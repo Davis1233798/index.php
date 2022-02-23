@@ -112,8 +112,7 @@
           <?php } ?>
          </select>
          </span>
-
-            </li>
+        </li>
 
             <li><input type="text" placeholder="*寄藥地址" id="txt_add_drug" value="<? echo $_SESSION[$_env['site_code'].'_recommand']['add_drug']==''?'':$_SESSION[$_env['site_code'].'_recommand']['add_drug']; ?>" maxlength="100" ></li>
             <li>(腸鏡事前灌腸準備藥物)</li>
@@ -127,32 +126,20 @@
             <li>
                 <!-- Jack 20220218 代餐                -->
 
-                <select id="meal" name="meal" class="form-control" size="1" style="color: #1e7e34; width: 562px; height: 50px;">
+                <select id="meal" name="meal" class="form-control" size="1" style="color: #1e7e34; width: 562px; height: 50px;" onchange = "myFunction(this.value)">
                     <option value="00"> 代餐種類 </option>
                     <? foreach($data_class as $row){ ?>
-                        <option value="<? echo strlen($row["meal_id"])==2?$row["meal_id"]:'0'.$row["meal_id"]; ?>" ><? echo $row["vegetarian"]==1?$row["meal_name"].'(葷食),單價 台幣:'.$row["price"]:$row["meal_name"].'(素食)1份價格 台幣:'.$row["price"] ?></option>
+                        <option value="<? echo strlen($row["meal_id"])==2?$row["meal_id"]:'0'.$row["meal_id"]; ?>" ><? echo $row["vegetarian"]==1?$row["meal_name"].'(葷食),單價 台幣:'.$row["price"]:$row["meal_name"].'(素食),單價 台幣:'.$row["price"] ?></option>
                     <? }
                     unset($sql);
                     unset($data_class);
-
                     ?>
                 </select>
-
-                <input type="text" placeholder="數量" id="quota" value="<? echo $_SESSION[$_env['site_code'].'_recommand']["quota"]==''?'':$_SESSION[$_env['site_code'].'_recommand']["quota"]?>" maxlength="2" style = "max-width: 100px; height: 50px;">
+                <input type="number" placeholder="數量" min = "0" max = "99" id="quota" value="<? echo $_SESSION[$_env['site_code'].'_recommand']["quota"]==''?'':$_SESSION[$_env['site_code'].'_recommand']["quota"]?>" maxlength="2" style = "width: 80px; height: 43px;">
 
             </li>
-            <?
-            $sql2 = "SELECT remark FROM meal WHERE id = "?>
-            <script>
-                alert($('#meal').val());
-                $(function(){
-                    $('#meal').val()
-            }
-            </script>
-            <?"enable = 1 ORDER BY id";
-            $data_class2 = $db->doselect($sql2);
-            echo '<span>'.$data_class2['remark'].'</span>';
-            ?>
+
+
         </ul>
     </ul>
 
