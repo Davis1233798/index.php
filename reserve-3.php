@@ -133,6 +133,7 @@
                     <? }
                     unset($sql);
                     unset($data_class);
+                    //
                     ?>
                 </select>
                 <input type="number" placeholder="數量" min = "0" max = "99" id="quota" value="<? echo $_SESSION[$_env['site_code'].'_recommand']["quota"]==''?'':$_SESSION[$_env['site_code'].'_recommand']["quota"]?>" maxlength="2" style = "width: 80px; height: 43px;">
