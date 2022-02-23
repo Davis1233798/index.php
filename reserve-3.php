@@ -126,7 +126,7 @@
             <li>
                 <!-- Jack 20220218 代餐                -->
 
-                <select id="meal" name="meal" class="form-control" size="1" style="color: #1e7e34; width: 562px; height: 50px;" onchange = "myFunction(this.value)">
+                <select id="meal" name="meal" class="form-control" size="1" style="color: #1e7e34; width: 576px; height: 50px;" onchange = "myFunction(this.value)">
                     <option value="00"> 代餐種類 </option>
                     <? foreach($data_class as $row){ ?>
                         <option value="<? echo strlen($row["meal_id"])==2?$row["meal_id"]:'0'.$row["meal_id"]; ?>" ><? echo $row["vegetarian"]==1?$row["meal_name"].'(葷食),單價 台幣:'.$row["price"]:$row["meal_name"].'(素食),單價 台幣:'.$row["price"] ?></option>
