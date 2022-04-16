@@ -17,7 +17,7 @@
  <div class="container">
   <div class="footer-box">
    <p>地址：112 台北市北投區石牌路二段201號中正樓15樓</p>
-   <p>TEL：02-28757225 <span>(一日、二日健檢)</span> ‧ 02-28712121#3641 <span>(重點半日健檢)</span></p>
+   <p>TEL：02-28757225 <span>(一日、二日健檢)</span> ‧ 02-28712121#3641 <span>(將官體檢)</span></p>
    <p>因服務電話使用量大，請善用聯絡我們</p>
    <p>FAX：02-28757383</p>
    <p>No.201,Shipai Road Sec 2, Taipei,112,Taiwan</p>

@@ -21,10 +21,10 @@
 
         <ul class="menu">
 
-            <li style="width:95px">
+            <li>
                 <a href="news.php">最新訊息</a>
             </li>
-            <li style="width:95px">
+            <li>
                 <a href="#">關於我們</a>
                 <ul class="submenu">
                     <li><a href="info.php">我們的特色</a></li>
@@ -32,37 +32,38 @@
                     <!--<li><a href="organization.php">組織架構</a></li>--->
                 </ul>
             </li>
-            <li style="width:125px">
+            <li style="width:130px">
                 <a href="#">健檢項目/價格</a>
                 <ul class="submenu">
                     <li><a href="c01.php">健檢組套</a></li>
                     <li><a href="d01.php">其他自費加選項目</a></li>
                 </ul>
             </li>
-            <li style="width:95px">
+            <li>
                 <a href="reserve.php">網路預約</a>
             </li>
-            <li style="width:95px">
+            <li>
                 <a href="qa.php">常見問題</a>
             </li>
-            <li style="width:95px">
+            <li>
                 <a href="health.php">檢前飲食</a>
             </li>
-            <li style="width:95px">
+            <li>
                 <a href="contact.php">聯絡我們</a>
             </li>
-            <li style="width:95px">
+            <li>
                 <a href="#">勞工問卷</a>
-                <ul class="submenu">
+                <ul class="submenu" style="width:175px;">
                     <li><a href="survey_pb.php">鉛作業問卷</a></li>
                     <li><a href="survey_dust.php">粉塵作業問卷</a></li>
                     <li><a href="survey_Hoco.php">甲醛作業問卷</a></li>
                     <li><a href="survey_radiation.php">游離作業問卷</a></li>
+                    <li><a href="survey_night.php">長期夜間工作問卷</a></li>
                 </ul>
             </li>
-            <li style="width:95px">
+            <li>
                 <a href="#">ENGLISH</a>
-                <ul class="submenu">
+                <ul class="submenu"style="width:135px;">
                     <li><a href="news_en.php">NEWS</a></li>
                     <li><a href="info_en.php">ABOUT US</a></li>
                     <li><a href="check_en.php">Health Checkup</a></li>
@@ -94,6 +95,15 @@
         <li><a href="qa.php">常見問題</a></li>
         <li><a href="health.php">檢前飲食</a></li>
         <li><a href="contact.php">聯絡我們</a></li>
+        <li><a href="#">勞工問卷</a></li>
+        <ul class="rwd_submenu">
+            <li><a href="survey_pb.php">鉛作業問卷</a></li>
+            <li><a href="survey_dust.php">粉塵作業問卷</a></li>
+            <li><a href="survey_Hoco.php">甲醛作業問卷</a></li>
+            <li><a href="survey_radiation.php">游離作業問卷</a></li>
+            <li><a href="survey_night.php">長期夜間工作問卷</a></li>
+        </ul>
+
         <li><a href="#">ENGLISH</a></li>
         <ul class="rwd_submenu">
             <li><a href="news_en.php">NEWS</a></li>

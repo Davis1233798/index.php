@@ -1,89 +1,40 @@
-<?   
-	//Jack 20220112 v1.0.1
-	function get_between($input, $start, $end) {
-		$substr = substr($input, strlen($start)+strpos($input, $start),(strlen($input) - strpos($input, $end))*(-1));
-		return $substr;
-	}
-
-	// function MailStat($Evcode){
-	// 	$code = substr($Evcode,0,1);//取第一個字
-	// 	switch($code){			
-	// 		case "A" :
-	// 			return"交寄郵件";
-	// 		case "G" :
-	// 			return"到達投遞局";
-	// 		case"H":
-	// 			return "投遞不成功";
-	// 		case"I":
-	// 			return;
-	// 		case"P":
-	// 			return;	
-	// 		case"Q":
-	// 			return;	
-	// 		case"S":
-	// 			return;			
-			
-	// 	}
-	// }
+              <option value="0.5">0.5</option>
+              <option value="1">1</option>
+              <option value="1.5">1.5</option>
+              <option value="2">2</option>
+              <option value="2.5">2.5</option>
+              <option value="3">3</option>
+              <option value="3.5">3.5</option>
+              <option value="4">4</option>
+              <option value="4.5">4.5</option>
+              <option value="5">5</option>
+              <option value="5.5">5.5</option>
+              
 
 
-	$i = 0;
-	$client = new SoapClient("http://sprws.post.gov.tw/PSTTP_MailQuery.asmx?WSDL");
-	$ServerName = "127.0.0.1";
-	$connectionInfo = Array("Database"=>"osundb_test","UID"=>"osun","PWD"=>"osun000","CharacterSet"=>"UTF-8");
-	$conn = sqlsrv_connect($ServerName,	$connectionInfo);
-	if ($conn === false){
-		$conn = sqlsrv_connect($ServerName,	$connectionInfo);//重連一次
-			if ($conn === false){
-				echo "連線有問題";
-			}
-	}
-	//$today = date("Y/m/d");
-    $unicodeA = array();
-    $targetDate = date("Y/m/d",strtotime('-90 day'));//取得3個月前日期
-	$query = "select PostMailNum ,Unicode from barcode_time where arrivaldate > '$targetDate' and  PostMailNum <> ''  and statuscode <> '@' order by insdate desc";
-	$stmt1 = sqlsrv_query($conn,$query);
-    if ($stmt1) {
-        while ($order = sqlsrv_fetch_object($stmt1)) {
+            <li>內分泌系統</li>
+            <ul>
+                <? foreach($_env['endocrine_self'] as $k=>$v){ ?>
+                    <label><input type="checkbox" id="cb_endocrine_self_<? echo $k; ?>" name="cb_endocrine_self" value="<? echo $k ?>" <? echo (($_SESSION[$_env['site_code'].'_survey']['endocrine_self']==''&&$k=='11')||$_SESSION[$_env['site_code'].'_survey']['endocrine_self']=='11')?'checked':''; ?> /><? echo $v ?></label>
+                <? } ?>
+            </ul>
+            <li>血液系統</li>
+            <ul>
+                <? foreach($_env['blood_self'] as $k=>$v){ ?>
+                    <label><input type="checkbox" id="cb_blood_self_<? echo $k; ?>" name="cb_blood_self" value="<? echo $k ?>" <? echo (($_SESSION[$_env['site_code'].'_survey']['blood_self']==''&&$k=='11')||$_SESSION[$_env['site_code'].'_survey']['blood_self']=='11')?'checked':''; ?> /><? echo $v ?></label>
+                <? } ?>
+            </ul>
+            <li>呼吸系統</li>
+            <ul>
+                <? foreach($_env['breathe_self'] as $k=>$v){ ?>
+                    <label><input type="checkbox" id="cb_breathe_self_<? echo $k; ?>" name="cb_breathe_self" value="<? echo $k ?>" <? echo (($_SESSION[$_env['site_code'].'_survey']['breathe_self']==''&&$k=='11')||$_SESSION[$_env['site_code'].'_survey']['breathe_self']=='11')?'checked':''; ?> /><? echo $v ?></label>
+                <? } ?>
+            </ul>
+            <li>其他</li>
+            <ul>
+                <? foreach($_env['other_self'] as $k=>$v){ ?>
+                    <label><input type="checkbox" id="cb_other_self_<? echo $k; ?>" name="cb_other_self" value="<? echo $k ?>" <? echo (($_SESSION[$_env['site_code'].'_survey']['other_self']==''&&$k=='11')||$_SESSION[$_env['site_code'].'_survey']['other_self']=='11')?'checked':''; ?> /><? echo $v ?></label>
+                <? } ?>
+            </ul>
 
-            $num = $order->PostMailNum;    //取得郵遞編號
-            $num = is_Null($num) ? '' : $num;
-            if ($num <> '') {
-                $unicode = $order->Unicode;      //取得Unicode
-                $unicode = is_Null($unicode) ? '' : $unicode;
-                $params = array("MAIL_NO" => $num);//將郵遞號碼與MailNo組成陣列
-                $unicodeA[$i] = $unicode;            //Unicode寫入陣列
-                $result = $client->MailQueryNewStatus($params)->MailQueryNewStatusResult;    //MailNo陣列使用MailQueryStatus送出Request 取得stdClass 使用MailQueryNewStatusResult取得XML字串
-                $stat = trim(get_between($result, '<STATUS>', '</STATUS>'));//取得XML STATUS欄位
-                $stat = str_replace("　", "", $stat);//替換全形空格
-                $statA[$i] = trim($stat);
-                $i += 1;
-                sleep(1);//1秒只能一次query
-            } else {
-                continue;
-            }
-            sleep(1);
-        }
-    }else{
-        return "ontinue";
-    }
-  // echo count(count($unicodeA));
-   // var_dump($unicodeA);
-    if (is_Null($unicodeA) === false){
-        if (count($unicodeA) > 0 ) {
-            for ($j = 0; $j < (count($unicodeA) - 1); $j++) {
-                $unicode = $unicodeA[$j];
-                $stat = $statA[$j];
-                $update = "update barcode_time set stat = '$stat' WHERE unicode = '$unicode'";
-                $stmt1 = sqlsrv_query($conn, $update);
-                if ($stmt1) {
-                    sqlsrv_commit($conn);
-                } else {
-                    sqlsrv_rollback($conn);
-                }
-            }
-        }
-	}
-
-?>  
-
+            <input style="color: #1e7e34; width: 156px; height: 28px;font-size: 80%;" type="text" placeholder="其他" id="txt_id_other_self_name" value="<? echo ($_SESSION[$_env['site_code'].'_survey']['blood_past']=='3'&&$_SESSION[$_env['site_code'].'_survey']['id_other_self_name']!='')?$_SESSION[$_env['site_code'].'_survey']['id_other_self_name']:''; ?>" <? echo $_SESSION[$_env['site_code'].'_survey']['other_self']=='3'?'':'disabled'; ?>>

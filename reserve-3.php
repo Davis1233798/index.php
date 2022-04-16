@@ -189,7 +189,9 @@
 
 
         sys_set_loading(true);
-        var id_type = $("input[name='rd_id_type']:checked").val();
+        var id_type = $("input[name='rd_id_type']:checked").val(),
+            meal = $('#meal').val(),
+            quota = $('#quota').val();
         $.ajax({
             type: "POST",
             url: "include/ajax.php",
@@ -210,14 +212,12 @@
                 "mobile" : $('#txt_mobile').val(),
                 "fax" : $('#txt_fax').val(),
                 "mail" : $('#txt_mail').val(),
-                "meal" : $('#meal').val(),
-                "quota" : $('#quota').val(),
+                "meal" : meal?meal:'',
+                "quota" : quota?quota:'0',
             },
             success:function(result){
                 if(result.ok=='t'){
-                    let a = $('#meal').val();
-                    let b = $('#quota').val();
-                    location.href = `./reserve-4.php?id=${a}?q=${b}`;
+                    location.href = `./reserve-4.php`;
                 } else {
                     alert(result.msg);
                 }

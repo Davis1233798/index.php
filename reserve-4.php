@@ -2,10 +2,8 @@
 <head>
     <?php include('layout/common.php');
     //Jack 20220218
-    $idO = get_get("id");
-    $id = substr($idO,0,2);
-    $quota = substr($idO,5,2);
-    $id = ltrim($id,"0");
+    $id = $_SESSION[$_env['site_code'].'_recommand']['meal'];
+    $quota = $_SESSION[$_env['site_code'].'_recommand']['quota'];
 
     ?>
 </head>
@@ -90,7 +88,7 @@
         $_SESSION[$_env['site_code'].'_recommand']['price'] = $total;
         ?>
 
-        <div class="check-content">
+        <div type="hidden" class="check-content" >
             您已選取的套餐/<br>
             <? echo $_env['package_type']['1'], '：', implode('、', $str_package1); ?><br>
             <? echo $_env['package_type']['2'], '：', implode('、', $str_package2); ?><br>
@@ -141,16 +139,17 @@
     function go_next(){
 
         sys_set_loading(true);
-        alert($`{id}`);
-        alert();
+
+
         $.ajax({
             type: "POST",
             url: "include/ajax.php",
             data: {
                 "fn": "recommand_5",
+                "meal": <?echo $_SESSION[$_env['site_code'].'_recommand']['meal']?>,
+                "quota": <?echo  $_SESSION[$_env['site_code'].'_recommand']['quota']?>,
                 "memo": $("#txt_memo").val(),
-                "meal": <?echo $id?>,
-                "quota": <?echo $quota?>,
+
             },
             success:function(result){
                 if(result.ok=='t'){

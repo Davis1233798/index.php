@@ -9,6 +9,292 @@ switch($fn){
 	default:
 		throw new exception("功能不存在");
 		break;
+    case "survey_radiation":
+        if(![$_env['site_code'].'_survey_radiation']) throw new exception('SESSION');
+
+        $ID = get_post('ID','');
+        $hire_date_s = get_post('hire_date_s','');
+        $job_now = get_post('job_now','');
+        $start_date_s = get_post('start_date_s','');
+        $daily_working_hour = get_post('daily_working_hour',0);
+        $endocrine_past = get_post("endocrine_past",0);
+        $blood_past = get_post("blood_past",0);
+        $txt_blood_past = get_post("txt_blood_past",'');
+        $liver_past = get_post("liver_past",0);
+        $other_past = get_post("other_past",'');
+        $txt_other_past = get_post("txt_other_past",'');
+        $smoke= get_post('somke',0);
+        $smoke_habbit=get_post('smoke_habbit','');
+        $smoke_fix=get_post('smoke_fix','');
+        $binlang= get_post('binlang',0);
+        $binlang_habbit=get_post('binlang_habbit','');
+        $binlang_fix=get_post('binlang_fix','');
+        $wine= get_post('wine',0);
+        $wine_habbit=get_post('wine_habbit','');
+        $wine_fix=get_post('wine_fix','');
+        $endocrine_self= json_decode(get_post("endocrine_self", ''));
+        $blood_self= json_decode(get_post("blood_self", ''));
+        $breathe_self = json_decode(get_post("breathe_self", ''));
+        $other_self = json_decode(get_post("other_self", ''));
+        $txt_other_self = get_post("txt_other_self",'');
+
+        $_SESSION[$_env['site_code'].'_survey_radiation']['ID']=$ID;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['hire_date_s'] =$hire_date_s;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['job_now'] =$job_now;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['start_date_s'] =$start_date_s;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['daily_working_hour'] =$daily_working_hour;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['endocrine_past'] =$endocrine_past;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['blood_past'] =$blood_past;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['txt_blood_past'] =$txt_blood_past;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['liver_past'] =$liver_past;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['other_past'] =$other_past;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['txt_other_past'] =$txt_other_past;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['smoke'] =$smoke;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['smoke_habbit'] =$smoke_habbit;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['smoke_fix'] =$smoke_fix;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['binlang'] =$binlang;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['$binlang_habbit'] =$binlang_habbit;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['$binlang_fix'] =$binlang_fix;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['wine'] =$wine;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['wine_habbit'] =$wine_habbit;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['wine_fix'] =$wine_fix;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['endocrine_self'] =$endocrine_self;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['blood_self'] =$blood_self;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['breathe_self'] =$breathe_self;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['other_self'] =$other_self;
+        $_SESSION[$_env['site_code'].'_survey_radiation']['txt_other_self'] =$txt_other_self;
+        $insdate=Date('Y/m/d');
+
+        $data = $_SESSION[$_env['site_code'].'_survey_radiation'];
+
+        $mssql_para = array(
+            'survey_type'=>'03',
+            'id'=>$data['ID'],
+            'hire_date_s'=>$data['hire_date_s'],
+            'job_now'=>$data['job_now'],
+            'start_date'=>$data['start_date_s'],
+            'daily_working_hour'=>$data['daily_working_hour'],
+            'past_survey'=>'',
+            'habbit_survey'=>'',
+            'self_survey'=>'',
+            'insdate'=>$insdate,
+        );
+
+        //過去病史
+        $mssql_para['past_survey'].=$endocrine_past .'|'.$blood_past .'|'.$liver_past .'|'.$other_past .'|'.$txt_other_past;
+        //習慣
+        $mssql_para['habbit_survey'].=$binlang.'|'.$binlang_habbit.'|'.$binlang_fix.'|';
+        $mssql_para['habbit_survey'].=$smoke.'|'.$smoke_habbit.'|'.$smoke_fix.'|';
+        $mssql_para['habbit_survey'].=$wine.'|'.$wine_habbit.'|'.$wine_fix;
+        //自覺
+        $mssql_para['self_survey'].=$endocrine_self.'|'.$blood_self.'|'.$breathe_self.'|'.$other_self.'|'.$txt_other_self;
+
+        include_once(__DIR__."/mssqldb.php");
+        $mssqldb->doinsert('laborer_survey', $mssql_para);
+        unset($data);
+        unset($_SESSION[$_env['site_code'].'_survey_radiation']);
+        unset($mssql_para);
+
+        $result = array(
+            'ok'=>'t',
+        );
+
+        break;
+    case "survey_pb":
+        $data = [$_env['site_code'].'_survey_pb'];
+        if(!$data) throw new exception('SESSION');
+		$ID=get_post('ID','');
+		$hire_date_s=get_post('hire_date_s','');
+		$job_now=get_post('job_now','');
+		$start_date_s=get_post('start_date_s','');
+		$daily_working_hour=get_post('daily_working_hour','');
+		$past_heart_pb=get_post('past_heart_pb','');
+		$past_nervous_pb=get_post('past_nervous_pb','');
+		$past_digestive_pb=get_post('past_digestive_pb','');
+		$past_rep_pb_men=get_post('past_rep_pb_men','');
+		$past_rep_pb_women=get_post('past_rep_pb_women','');
+		$past_other_pb=get_post('past_other_pb','');
+		$txt_other_past=get_post('txt_other_past','');
+		$smoke=get_post('smoke','');
+		$smoke_habbit=get_post('smoke_habbit','');
+		$smoke_fix=get_post('smoke_fix','');
+		$binlang=get_post('binlang','');
+		$binlang_habbit=get_post('binlang_habbit','');
+		$binlang_fix=get_post('binlang_fix','');
+		$wine=get_post('wine','');
+		$wine_habbit=get_post('wine_habbit','');
+		$wine_fix=get_post('wine_fix','');
+		$self_heart_pb=get_post('self_heart_pb','');
+		$self_nervous_pb=get_post('self_nervous_pb','');
+		$txt_other_self=get_post('txt_other_self','');
+
+		$data['ID']=$ID;
+		$data['hire_date_s']=$hire_date_s;
+		$data['job_now']=$job_now;
+		$data['start_date_s']=$start_date_s;
+		$data['daily_working_hour']=$daily_working_hour;
+		$data['past_heart_pb']=$past_heart_pb;
+		$data['past_nervous_pb']=$past_nervous_pb;
+		$data['past_digestive_pb']=$past_digestive_pb;
+		$data['past_rep_pb_men']=$past_rep_pb_men;
+		$data['past_rep_pb_women']=$past_rep_pb_women;
+		$data['txt_other_past']=$txt_other_past;
+		$data['smoke']=$smoke;
+		$data['smoke_habbit']=$smoke_habbit;
+		$data['smoke_fix']=$smoke_fix;
+		$data['binlang']=$binlang;
+		$data['binlang_habbit']=$binlang_habbit;
+		$data['binlang_fix']=$binlang_fix;
+		$data['wine']=$wine;
+		$data['wine_habbit']=$wine_habbit;
+		$data['wine_fix']=$wine_fix;
+		$data['self_heart_pb']=$self_heart_pb;
+		$data['self_nervous_pb']=$self_nervous_pb;
+		$data['txt_other_self']=$txt_other_self;
+		$insdate=Date('Y/m/d');
+		$instime=time('h/m/s');
+
+        $mssql_para = array(
+            'survey_type'=>'05',
+            'id'=>$data['ID'],
+            'hire_date_s'=>$data['hire_date_s'],
+            'job_now'=>$data['job_now'],
+            'start_date'=>$data['start_date_s'],
+            'daily_working_hour'=>$data['daily_working_hour'],
+            'past_survey'=>'',
+            'habbit_survey'=>'',
+            'self_survey'=>'',
+            'insdate'=>$insdate,
+        );
+
+		//過去病史
+        $mssql_para['past_survey'].=$past_heart_pb .'|'.$past_nervous_pb .'|'.$past_digestive_pb .'|';
+		$mssql_para['past_survey'].= $past_rep_pb_men.'|'.$past_rep_pb_women.'|'.$past_other_pb.'|'.$txt_other_past;
+        //習慣
+        $mssql_para['habbit_survey'].=$binlang.'|'.$binlang_habbit.'|'.$binlang_fix.'|';
+        $mssql_para['habbit_survey'].=$smoke.'|'.$smoke_habbit.'|'.$smoke_fix.'|';
+        $mssql_para['habbit_survey'].=$wine.'|'.$wine_habbit.'|'.$wine_fix;
+        //自覺
+        $mssql_para['self_survey'].=$self_heart_pb.'|'.$self_nervous_pb.'|'.$txt_other_self;
+
+		include_once(__DIR__."/mssqldb.php");
+        $mssqldb->doinsert('laborer_survey', $mssql_para);
+        unset($data);
+        unset($_SESSION[$_env['site_code'].'_survey_pb']);
+        unset($mssql_para);
+
+        $result = array(
+            'ok'=>'t',
+        );
+        break;
+		
+    case "survey_dust":
+	  	$data = [$_env['site_code'].'_survey_dust'];
+        if(!$data) throw new exception('SESSION');
+        $mssql_para = array(
+            'survey_type'=>'23',
+            'id'=>$data['ID'],
+            'hire_date_s'=>$data['hire_date_s'],
+            'job_now'=>$data['job_now'],
+            'start_date'=>$data['start_date_s'],
+            'daily_working_hour'=>$data['daily_working_hour'],
+            'past_survey'=>'',
+            'habbit_survey'=>'',
+            'self_survey'=>'',
+            'insdate'=>$insdate,
+        );
+				//過去病史
+        $mssql_para['past_survey'].=$past_breathe_ho .'|'.$past_skin_ho .'|'.$past_other_ho.'|'.$txt_past_other_ho;		
+        //習慣
+        $mssql_para['habbit_survey'].=$binlang.'|'.$binlang_habbit.'|'.$binlang_fix.'|';
+        $mssql_para['habbit_survey'].=$smoke.'|'.$smoke_habbit.'|'.$smoke_fix.'|';
+        $mssql_para['habbit_survey'].=$wine.'|'.$wine_habbit.'|'.$wine_fix;
+        //自覺
+        $mssql_para['self_survey'].=$self_breathe_ho .'|'.$self_skin_ho .'|'.$self_other_ho.'|'.$txt_self_other_ho;		
+
+		include_once(__DIR__."/mssqldb.php");
+        $mssqldb->doinsert('laborer_survey', $mssql_para);
+        unset($data);
+        unset($_SESSION[$_env['site_code'].'_survey_dust']);
+        unset($mssql_para);
+
+        $result = array(
+            'ok'=>'t',
+        );
+        break;
+
+    case "survey_hoco":
+		$data = [$_env['site_code'].'_survey_hoco'];
+        if(!$data) throw new exception('SESSION');
+
+		$data['ID']=$ID;
+		$data['hire_date_s']=$hire_date_s;
+		$data['job_now']=$job_now;
+		$data['start_date_s']=$start_date_s;
+		$data['daily_working_hour']=$daily_working_hour;
+		$data['past_breathe_ho']=$past_breathe_ho;
+		$data['past_skin_ho']=$past_skin_ho;
+		$data['past_other_ho']=$past_other_ho;
+		$data['txt_past_other_ho']=$txt_past_other_ho;
+		$data['smoke']=$smoke;
+		$data['smoke_habbit']=$smoke_habbit;
+		$data['smoke_fix']=$smoke_fix;
+		$data['binlang']=$binlang;
+		$data['binlang_habbit']=$binlang_habbit;
+		$data['binlang_fix']=$binlang_fix;
+		$data['wine']=$wine;
+		$data['wine_habbit']=$wine_habbit;
+		$data['wine_fix']=$wine_fix;
+		$data['self_breathe_ho']=$self_breathe_ho;
+		$data['self_skin_ho']=$self_skin_ho;
+		$data['self_other_ho']=$self_other_ho;
+		$data['txt_self_other_ho']=$txt_self_other_ho;
+
+        $mssql_para = array(
+            'survey_type'=>'30',
+            'id'=>$data['ID'],
+            'hire_date_s'=>$data['hire_date_s'],
+            'job_now'=>$data['job_now'],
+            'start_date'=>$data['start_date_s'],
+            'daily_working_hour'=>$data['daily_working_hour'],
+            'past_survey'=>'',
+            'habbit_survey'=>'',
+            'self_survey'=>'',
+            'insdate'=>$insdate,
+        );
+		//過去病史
+        $mssql_para['past_survey'].=$past_breathe_ho .'|'.$past_skin_ho .'|'.$past_other_ho.'|'.$txt_past_other_ho;		
+        //習慣
+        $mssql_para['habbit_survey'].=$binlang.'|'.$binlang_habbit.'|'.$binlang_fix.'|';
+        $mssql_para['habbit_survey'].=$smoke.'|'.$smoke_habbit.'|'.$smoke_fix.'|';
+        $mssql_para['habbit_survey'].=$wine.'|'.$wine_habbit.'|'.$wine_fix;
+        //自覺
+        $mssql_para['self_survey'].=$self_breathe_ho .'|'.$self_skin_ho .'|'.$self_other_ho.'|'.$txt_self_other_ho;		
+
+		include_once(__DIR__."/mssqldb.php");
+        $mssqldb->doinsert('laborer_survey', $mssql_para);
+        unset($data);
+        unset($_SESSION[$_env['site_code'].'_survey_hoco']);
+        unset($mssql_para);
+
+        $result = array(
+            'ok'=>'t',
+        );
+        break;
+    case "survey_night":
+        $mssql_para = array(
+            'survey_type'=>'98',
+            'id'=>$data['ID'],
+            'hire_date_s'=>$data['hire_date_s'],
+            'job_now'=>$data['job_now'],
+            'start_date'=>$data['start_date_s'],
+            'daily_working_hour'=>$data['daily_working_hour'],
+            'past_survey'=>'',
+            'habbit_survey'=>'',
+            'self_survey'=>'',
+            'insdate'=>$insdate,
+        );
+
 	case "recommand_1":
 		$gender = get_post("gender", 0);
 		$pregnancy = get_post("pregnancy", 0);
@@ -122,8 +408,8 @@ switch($fn){
 	case "recommand_5":
 		if(![$_env['site_code'].'_recommand']) throw new exception('SESSION');
 		$memo = get_post('memo', '');
-        $meal =  get_post('meal', 'NA');
-        $quota = get_post('quota', 'NA');
+        $meal =  get_post('meal', '');
+        $quota = get_post('quota', '');
 
 
 //        if([$_env['site_code'].'_recommand']['$meal']) throw new exception(echo $meal);
@@ -156,6 +442,7 @@ switch($fn){
             'meal' => $data['meal'],
             'quota' => $data['quota'],
 		);
+
 		$last_id = $db->doinsert('reservation', $para);
 
 		/*========寫入預約項目========*/

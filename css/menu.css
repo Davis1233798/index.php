@@ -1,5 +1,5 @@
 ﻿.topmenu{
-	width:100%; 
+	width:100%;
 	height:100px; 
 	z-index:9;
 	border-top:10px solid #f9a13e;
@@ -22,7 +22,7 @@
 }
 
 .menu{
-	width:76%; 
+	width:76%;
 	height:30px; 
 	float:left;
 	margin:40px 1% 0 1%;
@@ -31,16 +31,16 @@
 .menu > li{
 	float:left;
 	position:relative;
-	width:12%; 
+	width:10%;
 	height:24px; 
 	color:#a6e7c4; 
-	font-size:16px;  
+	font-size:16px;
 	text-align:center; 
 	line-height:24px; 
 	border-right:1px solid #ccc;
 }
 .menu > li:nth-child(3){
-	width:15%; 
+	width:15%;
 	}
 .menu > li:nth-child(9){
 	border-right:0px;
@@ -48,9 +48,9 @@
 
 .menu > li > a{
 	display:block;
-	width:100%; 
-	height:24px; 
-	color:#444; 
+	width:100%;
+	height:24px;
+	color:#444;
 }
 
 .menu > li > a:hover{
@@ -65,10 +65,10 @@
 	}
 
 .navFixed{
-	position:fixed; 
-	top:0; 
+	position:fixed;
+	top:0;
 	left:0;
-	transition: opacity .5s ease-out; 
+	transition: opacity .5s ease-out;
 	}
 
 .submenu{
@@ -83,7 +83,7 @@
 }
 
 .submenu li{
-	font-size:16px; 
+	font-size:15px;
 	line-height:60px;
 	letter-spacing:1px;
 	text-align:center; 
@@ -99,9 +99,6 @@
 }
 
 
-
-
-
 /*=======================================*/
 /*                RWD                    */
 /*=======================================*/
@@ -111,7 +108,7 @@
 }*/
 .rwdlogo{
 	width:250px;
-	height:52px;
+	height:40px;
 	position:absolute;
 	left:20px;
 	top:10px;
@@ -124,7 +121,7 @@
 .rwd_menu_btn{
 	position:absolute;
 	width:45px;
-	height:32px;
+	height:30px;
 	right:20px;
 	top:35px;
 	margin:-15px 0 0 0;
@@ -159,17 +156,17 @@
 	transform:rotate(-45deg);
 	-webkit-transform:rotate(-45deg);
 }
-.rwd_menu_btn.open span{opacity:0;}	
+.rwd_menu_btn.open span{opacity:0;}
 .rwd_menu{
 	display:none;
 	background:rgba(94,178,85,1);
 	position:fixed;
 	width:100%;
-	height:100%;
+	height:10%;
 	top:80px;
 	left:0;
-	z-index:3;
-	overflow-y:scroll;
+	z-index:9;
+
 	box-sizing:border-box;
 	padding:0 20px;
 }
@@ -177,14 +174,15 @@
 
 .rwd_menu > li{
 	/*padding:20px 5px; */
-	font-size:20px; line-height:60px;
-	height:60px;
-	border-bottom:1px solid #fff; position:relative; 
+	font-size:15px; line-height:30px;
+	height:30px;
+	border-bottom:1px solid #fff;
+	position:relative;
 }
 .rwd_menu > li > a{
 	display:block;
 	width:100%;
-	height:60px;
+	height:30px;
 	cursor:pointer;
 	color:#fff;
 }
@@ -192,7 +190,7 @@
 	content:'';
 	display:inline-block;
 	width:25px;
-	height:50px;
+	height:25px;
 	background:url(../images/icon01.png) no-repeat center center;
 	position:absolute;
 	right:20px;
@@ -208,30 +206,32 @@
 .rwd_menu > li:nth-child(7) > a::after{display:none;}
 .rwd_menu > li:nth-child(8) > a::after{display:none;}
 .rwd_menu > li:nth-child(9) > a::after{display:none;}
+
+
 /*.rwd_menu > li:last-of-type > a::after{display:none;}*/
+
+.en{ display:block;font-size:8px;color:#fff;}
+.mtext{ width:100px; height:auto;  position:absolute; left:20px; top:10px;}
+
 .rwd_submenu{
 	display:none;
-	font-size:16px;
+	font-size:13px;
 	width:100%;
 	clear:both;
 }
 .rwd_submenu li{
-	padding:20px 0 20px 0;
+	padding:5px 0 5px 0;
 	border-bottom:1px solid #fff;
-	text-indent:20px;
+	text-indent:2px;
 }
 .rwd_submenu li a{color:#fff;}
 .rwd_submenu li::before{
 	content:'-';
 	display:inline-block;
-	font-size:18px;
+	font-size:13px;
 	color:#fff;
 	padding:0 5px 0 0;
 }
-.en{ display:block;font-size:12px;color:#fff;}
-.mtext{ width:100px; height:auto;  position:absolute; left:20px; top:10px;}
-
-
 
 
 

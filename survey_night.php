@@ -70,7 +70,7 @@
             <li style="font-weight:bold;">內分泌：</li>
             <ul>
                 <? foreach($_env['endocrine_past_radiation'] as $k=>$v){ ?>
-                    <label><input type="checkbox" id="cb_endocrine_past_<? echo $k; ?>" name="cb_endocrine_past_radiation" value="<? echo $k ?>" <? echo (($_SESSION[$_env['site_code'].'_survey_radiation']['endocrine_past_radiation']==''&&$k=='3')||$_SESSION[$_env['site_code'].'_survey_radiation']['endocrine_past_radiation']=='4')?'checked':''; ?> /><? echo $v ?></label>
+                    <label><input type="checkbox" id="cb_endocrine_past_<? echo $k; ?>" name="cb_endocrine_past" value="<? echo $k ?>" <? echo (($_SESSION[$_env['site_code'].'_survey_radiation']['endocrine_past_radiation']==''&&$k=='3')||$_SESSION[$_env['site_code'].'_survey_radiation']['endocrine_past_radiation']=='4')?'checked':''; ?> /><? echo $v ?></label>
                 <? } ?>
             </ul>
             <li style="font-weight:bold;">血液疾病：</li>
@@ -90,8 +90,7 @@
             <li style="font-weight:bold;">其他:</li>
             <ul>
                 <? foreach($_env['other_past_radiation'] as $k=>$v){ ?>
-                    <label><input type="checkbox" id="cb_other_past_radiation_<? echo $k; ?>" name="cb_other_past_radiation" value="<? echo $k ?>"
-                    <? echo (($_SESSION[$_env['site_code'].'_survey_radiation']['other_past_radiation']==''&&$k=='11')||$_SESSION[$_env['site_code'].'_survey_radiation']['other_past_radiation']=='11')?'checked':''; ?> /><? echo $v ?></label>
+                    <label><input type="checkbox" id="cb_other_past_radiation_<? echo $k; ?>" name="cb_other_past_radiation" value="<? echo $k ?>" /><? echo $v ?></label>
                     <input style="color: #1e7e34; width: 256px; height: 28px;font-size: 80%;" type="<? echo $k=='10' ?'text':'hidden'?>" placeholder="其他" id="txt_other_past_radiation_<? echo $k; ?>"
                            value="<? echo $_SESSION[$_env['site_code'].'_survey_radiation']['txt_other_past']==''?'':$_SESSION[$_env['site_code'].'_survey_radiation']['txt_other_past']; ?>" disabled ?>
                 <? } ?>
@@ -184,7 +183,15 @@ include('layout/footer.php');
     //過往血液
 
     $("input[type='checkbox'][name='cb_blood_past_radiation']").change(function(){
+
+        if($("#cb_blood_past_radiation_1").prop('checked')){
+            $("#cb_blood_past_radiation_4").prop('checked', false);
+        };
+        if($("#cb_blood_past_radiation_2").prop('checked')) {
+            $("#cb_blood_past_radiation_4").prop('checked', false);
+        };
         if($("#cb_blood_past_radiation_3").prop('checked')){
+            $("#cb_blood_past_radiation_4").prop('checked', false);
             $("#txt_blood_past_radiation_3").prop('disabled', false);
         }else{
             $("#txt_blood_past_radiation_3").prop('disabled', true);
@@ -200,6 +207,21 @@ include('layout/footer.php');
     });
     //過往肝臟
     $("input[type='checkbox'][name='cb_liver_past_radiation']").change(function(){
+        if($("#cb_liver_past_radiation_1").prop('checked')){
+            $("#cb_liver_past_radiation_6").prop('checked', false);
+        };
+        if($("#cb_liver_past_radiation_2").prop('checked')) {
+            $("#cb_liver_past_radiation_6").prop('checked', false);
+        };
+        if($("#cb_liver_past_radiation_3").prop('checked')){
+            $("#cb_liver_past_radiation_6").prop('checked', false);
+        };
+        if($("#cb_liver_past_radiation_4").prop('checked')){
+            $("#cb_liver_past_radiation_6").prop('checked', false);
+        };
+        if($("#cb_liver_past_radiation_").prop('checked')){
+            $("#cb_liver_past_radiation_6").prop('checked', false);
+        };
         if ($("#cb_liver_past_radiation_1").prop('checked')==false &&
             $("#cb_liver_past_radiation_2").prop('checked')==false &&
             $("#cb_liver_past_radiation_3").prop('checked')==false &&
@@ -213,8 +235,35 @@ include('layout/footer.php');
     });
     //過往其他
     $("input[type='checkbox'][name='cb_other_past_radiation']").change(function(){
-
+        if($("#cb_other_past_radiation_1").prop('checked')){
+            $("#cb_other_past_radiation_11").prop('checked', false);
+        };
+        if($("#cb_other_past_radiation_2").prop('checked')) {
+            $("#cb_other_past_radiation_11").prop('checked', false);
+        };
+        if($("#cb_other_past_radiation_3").prop('checked')){
+            $("#cb_other_past_radiation_11").prop('checked', false);
+        };
+        if($("#cb_other_past_radiation_4").prop('checked')){
+            $("#cb_other_past_radiation_11").prop('checked', false);
+        };
+        if($("#cb_other_past_radiation_5").prop('checked')){
+            $("#cb_other_past_radiation_11").prop('checked', false);
+        };
+        if($("#cb_other_past_radiation_6").prop('checked')){
+            $("#cb_other_past_radiation_11").prop('checked', false);
+        };
+        if($("#cb_other_past_radiation_7").prop('checked')){
+            $("#cb_other_past_radiation_11").prop('checked', false);
+        };
+        if($("#cb_other_past_radiation_8").prop('checked')){
+            $("#cb_other_past_radiation_11").prop('checked', false);
+        };
+        if($("#cb_other_past_radiation_9").prop('checked')){
+            $("#cb_other_past_radiation_11").prop('checked', false);
+        };
         if($("#cb_other_past_radiation_10").prop('checked')){
+            $("#cb_other_past_radiation_11").prop('checked', false);
             $("#txt_other_past_radiation_10").prop('disabled', false);
         }else{
             $("#txt_other_past_radiation_10").prop('disabled', true);
@@ -310,7 +359,6 @@ include('layout/footer.php');
             type: "POST",
             url: "include/ajax.php",
             data: {
-
                 "fn": "survey_radiation",
                 "ID":$('#txt_id_passport').val(),
                 "hire_date_s" : $('#txt_hire_date_s_y').val()+'/'+$('#txt_hire_date_s_m').val()+'/'+$('#txt_hire_date_s_d').val(),
